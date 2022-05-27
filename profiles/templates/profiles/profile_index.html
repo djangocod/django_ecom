@@ -1,0 +1,81 @@
+{% extends '../_base.html' %}
+{% block topsearch %}{% endblock topsearch %}
+{% block carousel %}{% endblock carousel %}
+{% block contect %}
+<style>
+    .photo{
+        border: 2px solid #fff;
+        border-radius: 1%;
+        box-shadow: 2px 2px 5px #666;
+        display: block;
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        
+    }
+    
+    .con_img{
+        background: rgba(221, 231, 253, 0.564);
+        display: flex;
+        padding: 10px;
+        align-items: center;
+    }
+    .header-profile{
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    .header-profile{
+        letter-spacing: 1px;
+    }
+</style>
+    <!-- Contact Start -->
+   <div class="container-fluid">
+   {% include 'includes/navbar.html' %}
+   </div> 
+        <div class="text-center mb-4">
+            <h2 class="section-title px-5"><span class="px-2">Your Profile</span></h2>
+            <div class="row con_img">
+                <div>
+                 {% if profile.photo %}
+                <img class="img-fluid photo" src="{{profile.photo.url}}" alt="profile image">
+                {% else %}
+                <h3>No Photo </h3>
+                {% endif %}
+                </div>
+                <div class="ml-3 header-profile mt-3">
+                    <p >Username : {{profile.user.username|capfirst}}</p>
+                    <p > Email : {{profile.user.email}}</p>
+                    <p>Phone : {{profile.phone}}</p> 
+                </div>
+               
+            </div>
+            <hr>
+        </div>
+        <form action="" method="post" enctype="multipart/form-data">
+        <div class="row px-xl-5">
+            <div class="col-lg-7 mb-5">
+               <h3>Update Your Profile</h3>
+               <hr>
+                   {% csrf_token %}
+                   <div class="control-group">
+                        {{user_form}}
+                    </div>
+                </div>
+                <div class="col-lg-5 mb-5 ">
+                    <h3 class="font-weight-semi-bold mb-3 text-center">Information for Shipping</h3>
+                    <hr>
+                    <div class="control-group">
+                        {{form}}
+                    </div>
+                    <div>
+                        <button class="btn btn-primary mt-2 py-2 px-4" type="submit">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- Contact End -->
+{% endblock contect %}
+
+{% block footer %}{% endblock footer %}
