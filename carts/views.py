@@ -2,14 +2,16 @@ from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from .basket import Basket
-from stores.models import Product
-from profiles.models import Profile
+
+
 import random
 from django.contrib.auth import get_user_model
 from .models import Order, OrderItem
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+from profiles.models import Profile
+from stores.models import Product
 
 user = get_user_model()
 
